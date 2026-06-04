@@ -39,7 +39,9 @@ const token = sign({role: user.role ?? "costumer"}, secret, {
     expiresIn
 })
 
+// Desestruturamos o password do user, para não aparecer no retorno.
+const {password: hashedPassword, ...userWithoutPassword} = user
 
-    return response.json({token})}
+    return response.json({token, user: userWithoutPassword})}
 }
 export {SessionsController}
