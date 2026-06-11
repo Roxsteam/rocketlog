@@ -22,7 +22,7 @@ CREATE TABLE "deliveries" (
     "id" TEXT NOT NULL,
     "user_id" TEXT NOT NULL,
     "description" TEXT NOT NULL,
-    "status" "DeliveryStatus" NOT NULL DEFAULT 'processing',
+    "status" "DeliveryStatus" TEXT NOT NULL DEFAULT 'processing',
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3),
 
