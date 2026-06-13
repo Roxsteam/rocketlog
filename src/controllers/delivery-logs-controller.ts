@@ -21,6 +21,11 @@ class DeliveryLogsController {
         throw new AppError("delivery not found", 404)
      }
 
+     if(delivery.status === "delivered"){
+         throw new AppError("this order has already been delivered")
+
+     }
+
      if (delivery.status === "processing"){
         throw new AppError("change status to shipped", 404)
      }
@@ -36,12 +41,9 @@ class DeliveryLogsController {
     
       
         return response.status(201).json()
-            }
+            }           
 
-     
-            
-
-      async show(request: Request, response: Response) {
+    async show(request: Request, response: Response) {
          const paramsSchema = z.object({
             delivery_id: z.string().uuid(),
          })
@@ -49,17 +51,17 @@ class DeliveryLogsController {
          const {delivery_id} = paramsSchema.parse(request.params)
 
          const delivery = await prisma.delivery.findUnique({
-            where: {id: delivery_id}
+            where: {id: delivery_id},
+            include: {
+               user: true,
+               logs: true,
+            }
          })
 
          // Fazendo uma verificação para saber se o usuário é um cliente
          // e se o id dele é diferente do pedido.
 
-         if (
-            request.user?.role === "costumer" 
-            &&
-            request.user.id !== delivery?.userId
-         ) {
+         if (request.user?.role === "customer" && request.user.id !== delivery?.userId) {
             throw new AppError("the user can only view their deliveries")
          }
 

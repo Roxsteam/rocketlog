@@ -20,7 +20,7 @@ deliveryLogsRoutes.post(
 deliveryLogsRoutes.get(
 "/:delivery_id/show",
 ensureAuthenticated,
-verifyUserAuthorization(["sale", "costumer"]),
+verifyUserAuthorization(["sale", "customer"]),
 deliveryLogsController.show
 )
 

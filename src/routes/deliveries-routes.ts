@@ -6,7 +6,7 @@ import { ensureAuthenticated } from "@/middlewares/ensure-authenticated"
 
 import {verifyUserAuthorization} from "../middlewares/verifyUserAuthorizations"
 
-import { DeliveriesStatusController } from "@/controllers/deliveries-status"
+import { DeliveriesStatusController } from "@/controllers/deliveries-status-controller"
 
 const deliveriesRoutes = Router()
 const deliveriesController = new DeliveriesController

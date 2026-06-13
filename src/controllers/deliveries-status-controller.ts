@@ -24,6 +24,13 @@ data: {
 where: {id,},
 })
 
+await prisma.deliveryLog.create({
+    data: {
+        deliveryId: id,
+        description: status,
+    }
+})
+
 return response.json()
 
 }

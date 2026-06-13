@@ -34,7 +34,7 @@ throw new AppError("Invalid email or password", 401)
 
 const {expiresIn, secret} = authConfig.jwt
 
-const token = sign({role: user.role ?? "costumer"}, secret, {
+const token = sign({role: user.role ?? "customer"}, secret, {
     subject: user.id,
     expiresIn
 })
